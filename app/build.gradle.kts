@@ -16,8 +16,10 @@ android {
         applicationId = "com.defaultuninstaller"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
+        // Conscrypt ships native code; 32-bit x86 is only used by old emulators.
+        ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
 
     // Release signing secrets live in signing-key.txt (gitignored). Without it, release builds
@@ -38,9 +40,9 @@ android {
 
     buildTypes {
         release {
-            // Minify stays off: the root backend launches PrivilegedCli from the APK by class name,
-            // and Shizuku instantiates PrivilegedService reflectively.
-            isMinifyEnabled = false
+            // proguard-rules.pro keeps the classes that app_process and Shizuku load by name.
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.findByName("release")
         }
     }
@@ -50,6 +52,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+    packaging {
+        // BouncyCastle data files for algorithms libadb never uses (post-quantum tables, messages).
+        resources.excludes += listOf("org/bouncycastle/**", "META-INF/versions/9/OSGI-INF/**")
     }
     buildFeatures {
         compose = true
@@ -87,4 +93,8 @@ dependencies {
 
     implementation("dev.rikka.shizuku:api:13.1.5")
     implementation("dev.rikka.shizuku:provider:13.1.5")
+
+    // Built-in backend: talks to the phone's own adbd over Wireless debugging, like Shizuku does.
+    implementation("com.github.MuntashirAkon:libadb-android:3.1.1")
+    implementation("org.conscrypt:conscrypt-android:2.5.3")
 }

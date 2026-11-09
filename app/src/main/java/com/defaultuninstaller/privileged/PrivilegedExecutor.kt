@@ -1,6 +1,6 @@
 package com.defaultuninstaller.privileged
 
-enum class BackendKind { SHIZUKU, ROOT }
+enum class BackendKind { ADB, SHIZUKU, ROOT }
 
 sealed interface BackendStatus {
     data class Ready(val detail: String) : BackendStatus

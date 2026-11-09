@@ -28,7 +28,8 @@ A normal Android app **cannot** uninstall system apps or change another app's no
 
 | Backend | How it works | Root needed | Priority |
 |---|---|---|---|
-| **Shizuku** (primary) | The [Shizuku](https://shizuku.rikka.app/) service runs with ADB (`shell`) privileges, started over Wireless Debugging (Android 11+) or one-time `adb`. Uninstall Defaults binds to it and runs privileged commands / binder calls. | No | **Required for MVP** |
+| **Built-in Wireless debugging** (primary) | The app pairs once with the phone's own `adbd` over Wireless Debugging (Android 11+, pairing code typed into a notification) using an embedded ADB client ([libadb-android](https://github.com/MuntashirAkon/libadb-android)), then runs commands as `shell`. After the first connection it grants itself `WRITE_SECURE_SETTINGS` so it can switch Wireless Debugging back on after reboots. | No | **Required** |
+| **Shizuku** (alternative) | The [Shizuku](https://shizuku.rikka.app/) service runs with ADB (`shell`) privileges. Uninstall Defaults binds to it and runs privileged commands / binder calls. Useful on Android 8–10, where it can be started from a computer. | No | Optional |
 | **Root** (optional) | Runs the same commands through `su` (Magisk / KernelSU). | Yes | Nice-to-have |
 | **Standard intent** (fallback) | `Intent.ACTION_DELETE` for user-installed apps only. Used when no privileged backend is available. | No | Required |
 
@@ -172,11 +173,12 @@ Removing the wrong system package can cause boot loops or a broken phone. Every 
 On first launch:
 1. **Welcome screen:** explains what the app does and why it needs elevated access.
 2. **Choose a backend:**
-   - **Shizuku (recommended):** detects whether Shizuku is installed and running.
-     - Not installed → button to open its download page.
-     - Installed but not running → step-by-step guide to start it with Wireless Debugging.
-     - Running → request Shizuku permission.
-   - **Root:** request `su` access.
+   - **Wireless debugging (recommended):** one-time pairing, no other app.
+     - Developer options off → explain the Build-number taps and open About phone.
+     - Not paired → Start pairing: watches for the pairing service over mDNS, opens Developer options at Wireless debugging, and posts a notification with an inline reply for the 6-digit code (the pairing dialog closes if the user switches apps). The code can also be typed in-app in split screen.
+     - Paired, not connected → reconnect, switching Wireless debugging on automatically when `WRITE_SECURE_SETTINGS` was granted.
+   - **Shizuku (alternative):** only shown if Shizuku is installed, or on Android 10 and older.
+   - **Root:** request `su` access. If no `su` binary exists the card says the phone isn't rooted instead of offering a button that silently fails.
    - **Skip:** limited mode (user apps only, notification settings opened manually).
 3. **Optional: Notification access:** explains why it's needed and opens `ACTION_NOTIFICATION_LISTENER_SETTINGS`.
 
@@ -211,7 +213,7 @@ Each entry has an **Undo** action where one exists.
 
 ### 4.10 Settings
 
-- Backend: Auto / Shizuku / Root / Limited
+- Backend: Auto (Wireless debugging → Shizuku → root) / Wireless debugging / Shizuku / Root / Limited
 - Default "Keep app data" on system uninstall (on)
 - Expert mode (allows Critical packages, off by default)
 - Show package names in list (on)

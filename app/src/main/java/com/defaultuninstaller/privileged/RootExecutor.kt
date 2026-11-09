@@ -42,12 +42,8 @@ class RootExecutor(private val context: Context) : PrivilegedExecutor {
         }
     }
 
-    override suspend fun setNotificationsEnabled(pkg: String, uid: Int, enabled: Boolean): ShellResult {
-        val apk = context.applicationInfo.sourceDir
-        return exec(
-            "CLASSPATH='$apk' app_process /system/bin ${PrivilegedCli::class.java.name} notif $pkg $uid $enabled",
-        )
-    }
+    override suspend fun setNotificationsEnabled(pkg: String, uid: Int, enabled: Boolean): ShellResult =
+        exec(PrivilegedCli.notifCommand(context.applicationInfo.sourceDir, pkg, uid, enabled))
 
     private fun runSu(command: String, timeoutSeconds: Long = 120): ShellResult {
         val process = ProcessBuilder("su").start()

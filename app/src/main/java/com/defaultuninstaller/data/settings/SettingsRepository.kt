@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-enum class BackendPreference { AUTO, SHIZUKU, ROOT, LIMITED }
+enum class BackendPreference { AUTO, ADB, SHIZUKU, ROOT, LIMITED }
 enum class ThemeMode { SYSTEM, LIGHT, DARK }
 
 data class Settings(

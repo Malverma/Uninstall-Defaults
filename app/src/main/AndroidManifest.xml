@@ -9,7 +9,14 @@
     <!-- Fallback uninstall of user apps through the system dialog when no privileged backend exists. -->
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
-    <!-- Shizuku's API library requires minSdk 23; nothing else is needed here. -->
+    <!-- Built-in backend: talks to this phone's own adbd over Wireless debugging. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Pairing-code prompt (inline reply notification). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Granted to ourselves over ADB so Wireless debugging can be switched back on after a reboot. -->
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".App"
@@ -39,6 +46,10 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+
+        <receiver
+            android:name=".service.PairingCodeReceiver"
+            android:exported="false" />
 
         <provider
             android:name="rikka.shizuku.ShizukuProvider"

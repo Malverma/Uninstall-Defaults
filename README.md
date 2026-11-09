@@ -8,11 +8,12 @@ Normal apps can't touch system packages, so this one runs its commands through a
 
 | Backend | Privilege | Notes |
 |---|---|---|
+| **Wireless debugging (built in)** | `shell` (uid 2000) | Android 11+. Pair once with a code; no other app or computer. Reconnects by itself after reboots (needs Wi-Fi). |
 | **Shizuku** | `shell` (uid 2000), or root if Shizuku was started with root | No root needed. Restart Shizuku after each reboot (Wireless debugging or `adb`). |
 | **Root** | uid 0 via `su` (Magisk / KernelSU / APatch) | Shell commands go through `su`; binder calls run in-APK code via `app_process` as root. |
 | Limited | none | User apps only (system uninstall dialog); notifications open system settings. |
 
-"Automatic" (default) uses Shizuku when it's connected, otherwise root if you granted it.
+"Automatic" (default) uses built-in Wireless debugging when it's connected, then Shizuku, then root if you granted it.
 
 Preloaded apps are removed with `pm uninstall -k --user 0`. The factory APK stays on the read-only system partition, so every removal can be undone from **Removed apps** (`pm install-existing`), and a factory reset restores everything.
 
@@ -41,8 +42,10 @@ Without that file, `assembleRelease` produces `app-release-unsigned.apk` instead
 ## Install and set up
 
 1. `adb install app/build/outputs/apk/release/app-release.apk`
-2. Install [Shizuku](https://shizuku.rikka.app/download/) and start it (Wireless debugging on Android 11+, or `adb shell sh /storage/emulated/0/Android/data/moe.shizuku.privileged.api/start.sh`). On a rooted phone you can skip this and tap **Request root** instead.
-3. Open Uninstall Defaults → **Grant permission** → **Continue**.
+2. Turn on Developer options (Settings › About phone › tap Build number 7 times).
+3. Open Uninstall Defaults → **Start pairing**. It opens Wireless debugging: switch it on, tap **Pair device with pairing code**, then pull down the notification shade and type the 6-digit code into the Uninstall Defaults notification.
 4. Optional: allow notification access so blocked apps' existing notifications get cleared.
+
+On a rooted phone you can tap **Request root** instead. On Android 8–10, use [Shizuku](https://shizuku.rikka.app/download/) started from a computer.
 
 Xiaomi/Oppo/Vivo: also turn on **USB debugging (Security settings)** in Developer options, or `pm` calls through Shizuku get denied.

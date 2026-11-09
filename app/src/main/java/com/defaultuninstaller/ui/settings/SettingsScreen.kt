@@ -37,6 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.defaultuninstaller.App
 import com.defaultuninstaller.BuildConfig
 import com.defaultuninstaller.data.settings.BackendPreference
+import com.defaultuninstaller.privileged.BackendStatus
 import com.defaultuninstaller.data.settings.ThemeMode
 import com.defaultuninstaller.domain.ProfilePlan
 import com.defaultuninstaller.service.BlockedNotificationListener
@@ -88,7 +89,15 @@ fun SettingsScreen(onBack: () -> Unit) {
                         .selectable(selected = s.backend == pref, onClick = {
                             scope.launch {
                                 c.settings.setBackend(pref)
-                                if (pref == BackendPreference.ROOT) c.backend.requestRoot()
+                                when (pref) {
+                                    BackendPreference.ROOT -> if (c.backend.requestRoot() !is BackendStatus.Ready) {
+                                        snackbar.showSnackbar(if (c.root.suBinaryPresent()) "Root was denied" else "This phone isn't rooted (no su found)")
+                                    }
+                                    BackendPreference.ADB -> if (c.adb.connect() !is BackendStatus.Ready) {
+                                        snackbar.showSnackbar("Wireless debugging isn't set up. Open Setup access to pair.")
+                                    }
+                                    else -> Unit
+                                }
                             }
                         })
                         .padding(horizontal = 16.dp, vertical = 4.dp),
@@ -99,6 +108,7 @@ fun SettingsScreen(onBack: () -> Unit) {
                         Text(
                             when (pref) {
                                 BackendPreference.AUTO -> "Automatic"
+                                BackendPreference.ADB -> "Wireless debugging only"
                                 BackendPreference.SHIZUKU -> "Shizuku only"
                                 BackendPreference.ROOT -> "Root only"
                                 BackendPreference.LIMITED -> "Limited (no elevated access)"
@@ -106,7 +116,8 @@ fun SettingsScreen(onBack: () -> Unit) {
                         )
                         Text(
                             when (pref) {
-                                BackendPreference.AUTO -> "Shizuku if running, otherwise root"
+                                BackendPreference.AUTO -> "Built-in Wireless debugging, then Shizuku, then root"
+                                BackendPreference.ADB -> "Built in, ADB-level, no root or extra app"
                                 BackendPreference.SHIZUKU -> "ADB-level, no root needed"
                                 BackendPreference.ROOT -> "Uses su (Magisk, KernelSU, APatch)"
                                 BackendPreference.LIMITED -> "Only user apps; notifications via system settings"
