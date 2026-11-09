@@ -1,0 +1,1032 @@
+[
+ {
+  "package": "android",
+  "rating": "critical",
+  "description": "The Android framework itself."
+ },
+ {
+  "package": "com.android.systemui",
+  "rating": "critical",
+  "description": "Status bar, navigation, lock screen. Removing it bootloops the phone."
+ },
+ {
+  "package": "com.android.settings",
+  "rating": "critical",
+  "description": "System Settings app."
+ },
+ {
+  "package": "com.android.phone",
+  "rating": "critical",
+  "description": "Telephony service: calls, SIM, mobile data."
+ },
+ {
+  "package": "com.android.providers.settings",
+  "rating": "critical",
+  "description": "Stores every system setting."
+ },
+ {
+  "package": "com.android.providers.telephony",
+  "rating": "critical",
+  "description": "SMS/MMS and carrier database."
+ },
+ {
+  "package": "com.android.providers.media",
+  "rating": "critical",
+  "description": "Media storage provider."
+ },
+ {
+  "package": "com.google.android.providers.media.module",
+  "rating": "critical",
+  "description": "Media storage provider (mainline module)."
+ },
+ {
+  "package": "com.android.providers.downloads",
+  "rating": "critical",
+  "description": "Download manager; Play Store and browsers need it."
+ },
+ {
+  "package": "com.android.externalstorage",
+  "rating": "critical",
+  "description": "Access to internal storage and SD cards."
+ },
+ {
+  "package": "com.android.packageinstaller",
+  "rating": "critical",
+  "description": "Installs and uninstalls apps."
+ },
+ {
+  "package": "com.google.android.packageinstaller",
+  "rating": "critical",
+  "description": "Installs and uninstalls apps."
+ },
+ {
+  "package": "com.android.permissioncontroller",
+  "rating": "critical",
+  "description": "Runtime permission dialogs and management."
+ },
+ {
+  "package": "com.google.android.permissioncontroller",
+  "rating": "critical",
+  "description": "Runtime permission dialogs and management."
+ },
+ {
+  "package": "com.android.shell",
+  "rating": "critical",
+  "description": "ADB shell; Shizuku depends on it."
+ },
+ {
+  "package": "com.android.server.telecom",
+  "rating": "critical",
+  "description": "Call routing."
+ },
+ {
+  "package": "com.android.bluetooth",
+  "rating": "critical",
+  "description": "Bluetooth stack."
+ },
+ {
+  "package": "com.google.android.bluetooth",
+  "rating": "critical",
+  "description": "Bluetooth stack (mainline module)."
+ },
+ {
+  "package": "com.android.nfc",
+  "rating": "critical",
+  "description": "NFC stack."
+ },
+ {
+  "package": "com.android.se",
+  "rating": "critical",
+  "description": "Secure element (payments, eSIM)."
+ },
+ {
+  "package": "com.android.keychain",
+  "rating": "critical",
+  "description": "Certificate storage."
+ },
+ {
+  "package": "com.android.inputdevices",
+  "rating": "critical",
+  "description": "Keyboard layouts for physical input devices."
+ },
+ {
+  "package": "com.android.location.fused",
+  "rating": "critical",
+  "description": "Fused location provider."
+ },
+ {
+  "package": "com.android.networkstack",
+  "rating": "critical",
+  "description": "Networking stack."
+ },
+ {
+  "package": "com.google.android.networkstack",
+  "rating": "critical",
+  "description": "Networking stack (mainline module)."
+ },
+ {
+  "package": "com.android.networkstack.tethering",
+  "rating": "critical",
+  "description": "Hotspot and tethering."
+ },
+ {
+  "package": "com.google.android.networkstack.tethering",
+  "rating": "critical",
+  "description": "Hotspot and tethering."
+ },
+ {
+  "package": "com.android.wifi.resources",
+  "rating": "critical",
+  "description": "Wi-Fi configuration resources."
+ },
+ {
+  "package": "com.google.android.wifi.resources",
+  "rating": "critical",
+  "description": "Wi-Fi configuration resources."
+ },
+ {
+  "package": "com.android.ext.services",
+  "rating": "critical",
+  "description": "Notification ranking and autofill helpers."
+ },
+ {
+  "package": "com.google.android.ext.services",
+  "rating": "critical",
+  "description": "Notification ranking and autofill helpers."
+ },
+ {
+  "package": "com.google.android.modulemetadata",
+  "rating": "critical",
+  "description": "Mainline module metadata."
+ },
+ {
+  "package": "com.android.documentsui",
+  "rating": "critical",
+  "description": "System file picker used by many apps."
+ },
+ {
+  "package": "com.google.android.documentsui",
+  "rating": "critical",
+  "description": "System file picker used by many apps."
+ },
+ {
+  "package": "com.android.certinstaller",
+  "rating": "critical",
+  "description": "Installs certificates (Wi-Fi, VPN)."
+ },
+ {
+  "package": "com.android.mtp",
+  "rating": "critical",
+  "description": "USB file transfer."
+ },
+ {
+  "package": "com.android.vpndialogs",
+  "rating": "critical",
+  "description": "VPN consent dialogs."
+ },
+ {
+  "package": "com.android.providers.contacts",
+  "rating": "critical",
+  "description": "Contacts database."
+ },
+ {
+  "package": "com.android.localtransport",
+  "rating": "critical",
+  "description": "Backup transport."
+ },
+ {
+  "package": "com.android.wallpaperbackup",
+  "rating": "caution",
+  "description": "Wallpaper backup."
+ },
+ {
+  "package": "com.samsung.android.providers.context",
+  "rating": "caution",
+  "description": "Samsung context provider."
+ },
+ {
+  "package": "com.sec.android.app.launcher",
+  "rating": "caution",
+  "description": "Samsung One UI Home launcher."
+ },
+ {
+  "package": "com.android.launcher3",
+  "rating": "caution",
+  "description": "AOSP launcher."
+ },
+ {
+  "package": "com.google.android.apps.nexuslauncher",
+  "rating": "caution",
+  "description": "Pixel Launcher."
+ },
+ {
+  "package": "com.miui.home",
+  "rating": "caution",
+  "description": "Xiaomi launcher."
+ },
+ {
+  "package": "com.miui.securitycenter",
+  "rating": "critical",
+  "description": "Xiaomi Security / permission manager. Removing it can bootloop MIUI/HyperOS."
+ },
+ {
+  "package": "com.samsung.android.lool",
+  "rating": "caution",
+  "description": "Samsung Device Care."
+ },
+ {
+  "package": "com.topjohnwu.magisk",
+  "rating": "critical",
+  "description": "Magisk root manager."
+ },
+ {
+  "package": "me.weishu.kernelsu",
+  "rating": "critical",
+  "description": "KernelSU root manager."
+ },
+ {
+  "package": "com.google.android.gms",
+  "rating": "caution",
+  "description": "Google Play Services. Most Google apps, push notifications, location and many third-party apps rely on it."
+ },
+ {
+  "package": "com.google.android.gsf",
+  "rating": "caution",
+  "description": "Google Services Framework; needed by Play Services."
+ },
+ {
+  "package": "com.android.vending",
+  "rating": "caution",
+  "description": "Google Play Store. You lose app updates and Play-licensed apps may stop working."
+ },
+ {
+  "package": "com.google.android.webview",
+  "rating": "caution",
+  "description": "Android System WebView. Many apps render pages with it."
+ },
+ {
+  "package": "com.android.webview",
+  "rating": "caution",
+  "description": "Android System WebView."
+ },
+ {
+  "package": "com.android.chrome",
+  "rating": "caution",
+  "description": "Chrome. On some Android versions it provides WebView."
+ },
+ {
+  "package": "com.google.android.googlequicksearchbox",
+  "rating": "caution",
+  "description": "Google app: Search, Assistant, Discover feed, Lens."
+ },
+ {
+  "package": "com.google.android.inputmethod.latin",
+  "rating": "caution",
+  "description": "Gboard. Install another keyboard first."
+ },
+ {
+  "package": "com.google.android.dialer",
+  "rating": "caution",
+  "description": "Phone app. Install another dialer first."
+ },
+ {
+  "package": "com.google.android.apps.messaging",
+  "rating": "caution",
+  "description": "Google Messages. Install another SMS app first."
+ },
+ {
+  "package": "com.google.android.contacts",
+  "rating": "caution",
+  "description": "Contacts app."
+ },
+ {
+  "package": "com.android.contacts",
+  "rating": "caution",
+  "description": "Contacts app."
+ },
+ {
+  "package": "com.google.android.deskclock",
+  "rating": "caution",
+  "description": "Clock app; alarms stop working without a replacement."
+ },
+ {
+  "package": "com.google.android.setupwizard",
+  "rating": "caution",
+  "description": "Setup wizard. Needed after a factory reset."
+ },
+ {
+  "package": "com.google.android.apps.restore",
+  "rating": "caution",
+  "description": "Restores apps/data during setup."
+ },
+ {
+  "package": "com.google.android.as",
+  "rating": "caution",
+  "description": "Android System Intelligence: Live Caption, smart text selection, Now Playing."
+ },
+ {
+  "package": "com.google.android.as.oss",
+  "rating": "caution",
+  "description": "Private Compute Services."
+ },
+ {
+  "package": "com.google.android.apps.turbo",
+  "rating": "caution",
+  "description": "Device Health Services: adaptive battery and battery estimates."
+ },
+ {
+  "package": "com.google.android.partnersetup",
+  "rating": "caution",
+  "description": "Google partner setup."
+ },
+ {
+  "package": "com.google.android.syncadapters.contacts",
+  "rating": "caution",
+  "description": "Syncs contacts with your Google account."
+ },
+ {
+  "package": "com.google.android.syncadapters.calendar",
+  "rating": "caution",
+  "description": "Syncs calendars with your Google account."
+ },
+ {
+  "package": "com.google.android.tts",
+  "rating": "caution",
+  "description": "Speech Services by Google (text-to-speech)."
+ },
+ {
+  "package": "com.google.android.marvin.talkback",
+  "rating": "caution",
+  "description": "Android Accessibility Suite / TalkBack."
+ },
+ {
+  "package": "com.google.android.cellbroadcastreceiver",
+  "rating": "caution",
+  "description": "Emergency alerts."
+ },
+ {
+  "package": "com.android.cellbroadcastreceiver",
+  "rating": "caution",
+  "description": "Emergency alerts."
+ },
+ {
+  "package": "com.google.android.cellbroadcastservice",
+  "rating": "caution",
+  "description": "Emergency alerts service."
+ },
+ {
+  "package": "com.google.android.apps.safetyhub",
+  "rating": "caution",
+  "description": "Personal Safety: car crash detection, emergency SOS."
+ },
+ {
+  "package": "com.android.emergency",
+  "rating": "caution",
+  "description": "Emergency information."
+ },
+ {
+  "package": "com.android.carrierconfig",
+  "rating": "caution",
+  "description": "Carrier configuration; mobile network features may break."
+ },
+ {
+  "package": "com.google.android.captiveportallogin",
+  "rating": "caution",
+  "description": "Login pages for public Wi-Fi."
+ },
+ {
+  "package": "com.google.android.GoogleCamera",
+  "rating": "caution",
+  "description": "Pixel Camera."
+ },
+ {
+  "package": "com.android.camera2",
+  "rating": "caution",
+  "description": "AOSP Camera."
+ },
+ {
+  "package": "com.google.android.apps.photos",
+  "rating": "safe",
+  "description": "Google Photos."
+ },
+ {
+  "package": "com.samsung.android.scloud",
+  "rating": "caution",
+  "description": "Samsung Cloud backup."
+ },
+ {
+  "package": "com.samsung.android.mobileservice",
+  "rating": "caution",
+  "description": "Samsung Experience Service; Samsung account features need it."
+ },
+ {
+  "package": "com.osp.app.signin",
+  "rating": "caution",
+  "description": "Samsung account."
+ },
+ {
+  "package": "com.samsung.android.samsungpass",
+  "rating": "caution",
+  "description": "Samsung Pass password manager."
+ },
+ {
+  "package": "com.samsung.android.honeyboard",
+  "rating": "caution",
+  "description": "Samsung Keyboard. Install another keyboard first."
+ },
+ {
+  "package": "com.samsung.android.dialer",
+  "rating": "caution",
+  "description": "Samsung Phone. Install another dialer first."
+ },
+ {
+  "package": "com.samsung.android.messaging",
+  "rating": "caution",
+  "description": "Samsung Messages. Install another SMS app first."
+ },
+ {
+  "package": "com.sec.android.app.camera",
+  "rating": "caution",
+  "description": "Samsung Camera."
+ },
+ {
+  "package": "com.miui.msa.global",
+  "rating": "caution",
+  "description": "Xiaomi system ads service. Removing it stops ads but some Xiaomi apps may complain."
+ },
+ {
+  "package": "com.xiaomi.account",
+  "rating": "caution",
+  "description": "Xiaomi account."
+ },
+ {
+  "package": "com.google.android.youtube",
+  "rating": "safe",
+  "description": "YouTube."
+ },
+ {
+  "package": "com.google.android.apps.youtube.music",
+  "rating": "safe",
+  "description": "YouTube Music."
+ },
+ {
+  "package": "com.google.android.apps.youtube.kids",
+  "rating": "safe",
+  "description": "YouTube Kids."
+ },
+ {
+  "package": "com.google.android.videos",
+  "rating": "safe",
+  "description": "Google TV (Play Movies)."
+ },
+ {
+  "package": "com.google.android.music",
+  "rating": "safe",
+  "description": "Google Play Music (discontinued)."
+ },
+ {
+  "package": "com.google.android.apps.tachyon",
+  "rating": "safe",
+  "description": "Google Meet (formerly Duo)."
+ },
+ {
+  "package": "com.google.android.apps.books",
+  "rating": "safe",
+  "description": "Google Play Books."
+ },
+ {
+  "package": "com.google.android.apps.magazines",
+  "rating": "safe",
+  "description": "Google News."
+ },
+ {
+  "package": "com.google.android.apps.podcasts",
+  "rating": "safe",
+  "description": "Google Podcasts."
+ },
+ {
+  "package": "com.google.android.apps.subscriptions.red",
+  "rating": "safe",
+  "description": "Google One."
+ },
+ {
+  "package": "com.google.android.apps.docs",
+  "rating": "safe",
+  "description": "Google Drive."
+ },
+ {
+  "package": "com.google.android.apps.docs.editors.docs",
+  "rating": "safe",
+  "description": "Google Docs."
+ },
+ {
+  "package": "com.google.android.apps.docs.editors.sheets",
+  "rating": "safe",
+  "description": "Google Sheets."
+ },
+ {
+  "package": "com.google.android.apps.docs.editors.slides",
+  "rating": "safe",
+  "description": "Google Slides."
+ },
+ {
+  "package": "com.google.android.gm",
+  "rating": "safe",
+  "description": "Gmail."
+ },
+ {
+  "package": "com.google.android.apps.maps",
+  "rating": "safe",
+  "description": "Google Maps."
+ },
+ {
+  "package": "com.google.android.apps.fitness",
+  "rating": "safe",
+  "description": "Google Fit."
+ },
+ {
+  "package": "com.google.android.apps.walletnfcrel",
+  "rating": "safe",
+  "description": "Google Wallet."
+ },
+ {
+  "package": "com.google.android.apps.googleassistant",
+  "rating": "safe",
+  "description": "Assistant shortcut app."
+ },
+ {
+  "package": "com.google.android.feedback",
+  "rating": "safe",
+  "description": "Market feedback agent."
+ },
+ {
+  "package": "com.google.android.keep",
+  "rating": "safe",
+  "description": "Google Keep."
+ },
+ {
+  "package": "com.google.android.calendar",
+  "rating": "safe",
+  "description": "Google Calendar."
+ },
+ {
+  "package": "com.google.android.apps.chromecast.app",
+  "rating": "safe",
+  "description": "Google Home."
+ },
+ {
+  "package": "com.google.android.play.games",
+  "rating": "safe",
+  "description": "Google Play Games."
+ },
+ {
+  "package": "com.google.android.apps.wellbeing",
+  "rating": "safe",
+  "description": "Digital Wellbeing."
+ },
+ {
+  "package": "com.google.android.apps.photosgo",
+  "rating": "safe",
+  "description": "Gallery Go."
+ },
+ {
+  "package": "com.google.android.apps.searchlite",
+  "rating": "safe",
+  "description": "Google Go."
+ },
+ {
+  "package": "com.google.android.apps.youtube.creator",
+  "rating": "safe",
+  "description": "YouTube Studio."
+ },
+ {
+  "package": "com.google.android.apps.recorder",
+  "rating": "safe",
+  "description": "Pixel Recorder."
+ },
+ {
+  "package": "com.google.android.apps.pixelmigrate",
+  "rating": "safe",
+  "description": "Pixel data transfer tool."
+ },
+ {
+  "package": "com.google.android.apps.nbu.files",
+  "rating": "safe",
+  "description": "Files by Google."
+ },
+ {
+  "package": "com.google.android.apps.translate",
+  "rating": "safe",
+  "description": "Google Translate."
+ },
+ {
+  "package": "com.google.android.apps.bard",
+  "rating": "safe",
+  "description": "Gemini."
+ },
+ {
+  "package": "com.google.android.projection.gearhead",
+  "rating": "safe",
+  "description": "Android Auto (only remove if you don't use it)."
+ },
+ {
+  "package": "com.google.ar.core",
+  "rating": "safe",
+  "description": "Google Play Services for AR."
+ },
+ {
+  "package": "com.google.ar.lens",
+  "rating": "safe",
+  "description": "Google Lens."
+ },
+ {
+  "package": "com.google.android.apps.messaging.ui",
+  "rating": "safe",
+  "description": "Messages companion."
+ },
+ {
+  "package": "com.google.android.printservice.recommendation",
+  "rating": "safe",
+  "description": "Print service recommendations."
+ },
+ {
+  "package": "com.google.android.apps.diagnosticstool",
+  "rating": "safe",
+  "description": "Pixel diagnostics."
+ },
+ {
+  "package": "com.facebook.katana",
+  "rating": "safe",
+  "description": "Facebook."
+ },
+ {
+  "package": "com.facebook.system",
+  "rating": "safe",
+  "description": "Facebook App Installer (preload stub)."
+ },
+ {
+  "package": "com.facebook.appmanager",
+  "rating": "safe",
+  "description": "Facebook App Manager (preload stub)."
+ },
+ {
+  "package": "com.facebook.services",
+  "rating": "safe",
+  "description": "Facebook Services (preload stub)."
+ },
+ {
+  "package": "com.facebook.orca",
+  "rating": "safe",
+  "description": "Messenger."
+ },
+ {
+  "package": "com.instagram.android",
+  "rating": "safe",
+  "description": "Instagram."
+ },
+ {
+  "package": "com.whatsapp",
+  "rating": "safe",
+  "description": "WhatsApp."
+ },
+ {
+  "package": "com.netflix.mediaclient",
+  "rating": "safe",
+  "description": "Netflix."
+ },
+ {
+  "package": "com.netflix.partner.activation",
+  "rating": "safe",
+  "description": "Netflix partner activation."
+ },
+ {
+  "package": "com.spotify.music",
+  "rating": "safe",
+  "description": "Spotify."
+ },
+ {
+  "package": "com.microsoft.skydrive",
+  "rating": "safe",
+  "description": "Microsoft OneDrive."
+ },
+ {
+  "package": "com.microsoft.office.officehubrow",
+  "rating": "safe",
+  "description": "Microsoft 365 (Office)."
+ },
+ {
+  "package": "com.microsoft.office.outlook",
+  "rating": "safe",
+  "description": "Microsoft Outlook."
+ },
+ {
+  "package": "com.microsoft.appmanager",
+  "rating": "safe",
+  "description": "Link to Windows. Remove only if you don't use it."
+ },
+ {
+  "package": "com.linkedin.android",
+  "rating": "safe",
+  "description": "LinkedIn."
+ },
+ {
+  "package": "com.amazon.mShop.android.shopping",
+  "rating": "safe",
+  "description": "Amazon Shopping."
+ },
+ {
+  "package": "com.amazon.appmanager",
+  "rating": "safe",
+  "description": "Amazon app manager (preload stub)."
+ },
+ {
+  "package": "com.amazon.avod.thirdpartyclient",
+  "rating": "safe",
+  "description": "Prime Video."
+ },
+ {
+  "package": "com.booking",
+  "rating": "safe",
+  "description": "Booking.com."
+ },
+ {
+  "package": "com.zhiliaoapp.musically",
+  "rating": "safe",
+  "description": "TikTok."
+ },
+ {
+  "package": "com.ebay.mobile",
+  "rating": "safe",
+  "description": "eBay."
+ },
+ {
+  "package": "com.ironsource.appcloud.oobe",
+  "rating": "safe",
+  "description": "ironSource AppCloud (carrier app pusher)."
+ },
+ {
+  "package": "com.aura.oobe.samsung",
+  "rating": "safe",
+  "description": "AppCloud / Aura (Samsung preload pusher)."
+ },
+ {
+  "package": "com.aura.oobe.samsung.gl",
+  "rating": "safe",
+  "description": "AppCloud / Aura (Samsung preload pusher)."
+ },
+ {
+  "package": "com.digitalturbine.ignite",
+  "rating": "safe",
+  "description": "Digital Turbine Ignite (carrier app pusher)."
+ },
+ {
+  "package": "com.dti.att",
+  "rating": "safe",
+  "description": "Digital Turbine (AT&T app pusher)."
+ },
+ {
+  "package": "com.dti.tmobile",
+  "rating": "safe",
+  "description": "Digital Turbine (T-Mobile app pusher)."
+ },
+ {
+  "package": "com.tmobile.pr.adapt",
+  "rating": "caution",
+  "description": "T-Mobile device diagnostics."
+ },
+ {
+  "package": "com.att.myWireless",
+  "rating": "safe",
+  "description": "myAT&T."
+ },
+ {
+  "package": "com.vzw.hss.myverizon",
+  "rating": "safe",
+  "description": "My Verizon."
+ },
+ {
+  "package": "com.verizon.messaging.vzmsgs",
+  "rating": "safe",
+  "description": "Verizon Messages."
+ },
+ {
+  "package": "com.samsung.android.bixby.agent",
+  "rating": "safe",
+  "description": "Bixby Voice."
+ },
+ {
+  "package": "com.samsung.android.bixby.wakeup",
+  "rating": "safe",
+  "description": "Bixby wake-up."
+ },
+ {
+  "package": "com.samsung.android.app.spage",
+  "rating": "safe",
+  "description": "Samsung Free / Bixby Home."
+ },
+ {
+  "package": "com.samsung.android.visionintelligence",
+  "rating": "safe",
+  "description": "Bixby Vision."
+ },
+ {
+  "package": "com.samsung.android.bixbyvision.framework",
+  "rating": "caution",
+  "description": "Bixby Vision framework; camera features may depend on it."
+ },
+ {
+  "package": "com.samsung.android.arzone",
+  "rating": "safe",
+  "description": "AR Zone."
+ },
+ {
+  "package": "com.samsung.android.aremoji",
+  "rating": "safe",
+  "description": "AR Emoji."
+ },
+ {
+  "package": "com.samsung.android.ardrawing",
+  "rating": "safe",
+  "description": "AR Doodle."
+ },
+ {
+  "package": "com.samsung.android.game.gamehome",
+  "rating": "safe",
+  "description": "Game Launcher."
+ },
+ {
+  "package": "com.samsung.android.game.gametools",
+  "rating": "safe",
+  "description": "Game Tools."
+ },
+ {
+  "package": "com.samsung.android.tvplus",
+  "rating": "safe",
+  "description": "Samsung TV Plus."
+ },
+ {
+  "package": "com.samsung.android.app.tips",
+  "rating": "safe",
+  "description": "Samsung Tips."
+ },
+ {
+  "package": "com.samsung.android.kidsinstaller",
+  "rating": "safe",
+  "description": "Samsung Kids installer."
+ },
+ {
+  "package": "com.samsung.android.forest",
+  "rating": "safe",
+  "description": "Samsung Digital Wellbeing."
+ },
+ {
+  "package": "com.samsung.android.voc",
+  "rating": "safe",
+  "description": "Samsung Members."
+ },
+ {
+  "package": "com.samsung.android.app.watchmanager",
+  "rating": "safe",
+  "description": "Galaxy Wearable."
+ },
+ {
+  "package": "com.sec.android.app.sbrowser",
+  "rating": "safe",
+  "description": "Samsung Internet."
+ },
+ {
+  "package": "com.samsung.android.email.provider",
+  "rating": "safe",
+  "description": "Samsung Email."
+ },
+ {
+  "package": "com.samsung.android.spay",
+  "rating": "safe",
+  "description": "Samsung Wallet / Pay."
+ },
+ {
+  "package": "com.sec.android.easyMover",
+  "rating": "safe",
+  "description": "Smart Switch."
+ },
+ {
+  "package": "com.samsung.android.app.updatecenter",
+  "rating": "safe",
+  "description": "Samsung update center for preloads."
+ },
+ {
+  "package": "com.samsung.android.smartswitchassistant",
+  "rating": "safe",
+  "description": "Smart Switch assistant."
+ },
+ {
+  "package": "com.samsung.android.calendar",
+  "rating": "safe",
+  "description": "Samsung Calendar."
+ },
+ {
+  "package": "com.samsung.android.app.notes",
+  "rating": "safe",
+  "description": "Samsung Notes."
+ },
+ {
+  "package": "com.samsung.android.oneconnect",
+  "rating": "safe",
+  "description": "SmartThings."
+ },
+ {
+  "package": "com.samsung.android.mdx",
+  "rating": "safe",
+  "description": "Link to Windows service (Samsung)."
+ },
+ {
+  "package": "com.samsung.android.app.reminder",
+  "rating": "safe",
+  "description": "Samsung Reminder."
+ },
+ {
+  "package": "com.samsung.android.service.peoplestripe",
+  "rating": "safe",
+  "description": "Edge People panel."
+ },
+ {
+  "package": "com.samsung.android.app.sharelive",
+  "rating": "caution",
+  "description": "Quick Share."
+ },
+ {
+  "package": "com.sec.android.app.samsungapps",
+  "rating": "caution",
+  "description": "Galaxy Store. You lose updates for Samsung apps."
+ },
+ {
+  "package": "com.miui.analytics",
+  "rating": "safe",
+  "description": "MIUI analytics."
+ },
+ {
+  "package": "com.xiaomi.mipicks",
+  "rating": "safe",
+  "description": "GetApps (Xiaomi app store)."
+ },
+ {
+  "package": "com.miui.videoplayer",
+  "rating": "safe",
+  "description": "Mi Video."
+ },
+ {
+  "package": "com.miui.player",
+  "rating": "safe",
+  "description": "Mi Music."
+ },
+ {
+  "package": "com.mi.globalbrowser",
+  "rating": "safe",
+  "description": "Mi Browser."
+ },
+ {
+  "package": "com.miui.yellowpage",
+  "rating": "safe",
+  "description": "Mi Yellow Pages."
+ },
+ {
+  "package": "com.facemoji.lite.xiaomi",
+  "rating": "safe",
+  "description": "Facemoji keyboard."
+ },
+ {
+  "package": "com.miui.hybrid",
+  "rating": "safe",
+  "description": "Quick Apps."
+ },
+ {
+  "package": "com.xiaomi.glgm",
+  "rating": "safe",
+  "description": "Xiaomi Games."
+ },
+ {
+  "package": "com.miui.bugreport",
+  "rating": "safe",
+  "description": "Xiaomi bug report."
+ },
+ {
+  "package": "com.miui.cleaner",
+  "rating": "safe",
+  "description": "Xiaomi Cleaner."
+ },
+ {
+  "package": "com.miui.android.fashiongallery",
+  "rating": "safe",
+  "description": "Wallpaper Carousel."
+ },
+ {
+  "package": "com.xiaomi.midrop",
+  "rating": "caution",
+  "description": "ShareMe / Mi Drop."
+ },
+ {
+  "package": "com.mi.health",
+  "rating": "safe",
+  "description": "Mi Fitness."
+ }
+]

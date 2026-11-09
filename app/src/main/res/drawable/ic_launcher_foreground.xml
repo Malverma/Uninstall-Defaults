@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Trash can on a 108dp adaptive canvas (content kept inside the 66dp safe zone). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="30"
+        android:translateY="30">
+        <path
+            android:fillColor="#FFFF6B5B"
+            android:pathData="M18,4h12l2,3h10v5H6V7h10z" />
+        <path
+            android:fillColor="#FFFF6B5B"
+            android:pathData="M9,15h30l-2.2,27.2A3,3 0,0 1,33.8 45H14.2a3,3 0,0 1,-3 -2.8z" />
+        <path
+            android:fillColor="#FF1B1F24"
+            android:pathData="M17,20h3v19h-3zM22.5,20h3v19h-3zM28,20h3v19h-3z" />
+    </group>
+</vector>
