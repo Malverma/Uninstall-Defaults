@@ -25,7 +25,18 @@ Preloaded apps are removed with `pm uninstall -k --user 0`. The factory APK stay
 # -> app/build/outputs/apk/release/app-release.apk
 ```
 
-Needs JDK 17+ and the Android SDK (platform 35). `local.properties` points at the SDK. The release build is signed with the committed `app/release.keystore` so updates install over each other. It's a personal sideload key, so swap it out before distributing publicly.
+Needs JDK 17+ and the Android SDK (platform 35). `local.properties` points at the SDK.
+
+Release signing reads `signing-key.txt` in the project root (gitignored, never committed):
+
+```properties
+storeFile=release.keystore      # relative to app/
+storePassword=...
+keyAlias=...
+keyPassword=...
+```
+
+Without that file, `assembleRelease` produces `app-release-unsigned.apk` instead.
 
 ## Install and set up
 

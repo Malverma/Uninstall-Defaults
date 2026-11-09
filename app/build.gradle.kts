@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -18,13 +20,19 @@ android {
         versionName = "1.0.0"
     }
 
+    // Release signing secrets live in signing-key.txt (gitignored). Without it, release builds
+    // are produced unsigned so anyone can still build from a clean checkout.
+    val signingFile = rootProject.file("signing-key.txt")
+    val signing = Properties().apply { if (signingFile.exists()) signingFile.inputStream().use { load(it) } }
+
     signingConfigs {
-        create("release") {
-            // Personal sideload key so every build installs as an update over the last one.
-            storeFile = file("release.keystore")
-            storePassword = "defaultuninstaller"
-            keyAlias = "defaultuninstaller"
-            keyPassword = "defaultuninstaller"
+        if (signingFile.exists()) {
+            create("release") {
+                storeFile = file(signing.getProperty("storeFile"))
+                storePassword = signing.getProperty("storePassword")
+                keyAlias = signing.getProperty("keyAlias")
+                keyPassword = signing.getProperty("keyPassword")
+            }
         }
     }
 
@@ -33,7 +41,7 @@ android {
             // Minify stays off: the root backend launches PrivilegedCli from the APK by class name,
             // and Shizuku instantiates PrivilegedService reflectively.
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.findByName("release")
         }
     }
     compileOptions {
