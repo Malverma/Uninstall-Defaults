@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import android.text.format.Formatter
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -98,6 +99,7 @@ fun AppDetailSheet(
                 })
                 Info("Source", sourceLabel(app.installer, app.isSystem))
                 Info("APK", app.apkPath)
+                Info("Size", Formatter.formatShortFileSize(context, app.sizeBytes))
                 Info("Installed", dates.format(Date(app.firstInstallTime)))
                 Info("Updated", dates.format(Date(app.lastUpdateTime)))
                 Info("Status", buildString {

@@ -9,3 +9,6 @@ local.properties
 signing-key.txt
 *.keystore
 *.jks
+
+# Test builds copied to the project root
+*.apk

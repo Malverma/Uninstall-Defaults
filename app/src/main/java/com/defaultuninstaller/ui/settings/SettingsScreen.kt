@@ -88,11 +88,16 @@ fun SettingsScreen(onBack: () -> Unit) {
                         .fillMaxWidth()
                         .selectable(selected = s.backend == pref, onClick = {
                             scope.launch {
+                                // Switching to root on a phone without it would silently drop to Limited.
+                                if (pref == BackendPreference.ROOT && c.backend.requestRoot() !is BackendStatus.Ready) {
+                                    snackbar.showSnackbar(
+                                        if (c.root.suBinaryPresent()) "Root was denied. Allow Uninstall Defaults in your root manager."
+                                        else "This phone isn't rooted, so root can't be used. Use Wireless debugging or Shizuku instead.",
+                                    )
+                                    return@launch
+                                }
                                 c.settings.setBackend(pref)
                                 when (pref) {
-                                    BackendPreference.ROOT -> if (c.backend.requestRoot() !is BackendStatus.Ready) {
-                                        snackbar.showSnackbar(if (c.root.suBinaryPresent()) "Root was denied" else "This phone isn't rooted (no su found)")
-                                    }
                                     BackendPreference.ADB -> if (c.adb.connect() !is BackendStatus.Ready) {
                                         snackbar.showSnackbar("Wireless debugging isn't set up. Open Setup access to pair.")
                                     }

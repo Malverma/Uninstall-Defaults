@@ -13,9 +13,12 @@ import com.defaultuninstaller.data.safety.SafetyRating
 import com.defaultuninstaller.data.safety.SafetyRepository
 import com.defaultuninstaller.data.settings.SettingsRepository
 import com.defaultuninstaller.privileged.BackendManager
+import com.defaultuninstaller.privileged.BackendStatus
 import com.defaultuninstaller.privileged.PrivilegedExecutor
 import com.defaultuninstaller.privileged.ShellResult
 import com.defaultuninstaller.service.BlockedNotificationListener
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withTimeoutOrNull
 
 data class ActionOutcome(
     val success: Boolean,
@@ -70,10 +73,9 @@ class AppActions(
 
     suspend fun setEnabled(app: AppInfo, enabled: Boolean): ActionOutcome {
         if (!enabled) guard(app)?.let { return it } else validate(app.packageName)?.let { return it }
-        val exec = executor ?: return ActionOutcome(
-            success = true,
-            message = "Disable it from the app's system settings page",
-            fallbackIntent = appDetailsIntent(app.packageName),
+        val exec = connectedExecutor() ?: return ActionOutcome(
+            false,
+            "${if (enabled) "Enabling" else "Disabling"} apps needs Wireless debugging, Shizuku or root. Open setup from the status chip.",
         )
         val result = forEachUser(exec) { user ->
             if (enabled) "pm enable --user $user ${app.packageName}" else "pm disable-user --user $user ${app.packageName}"
@@ -100,18 +102,18 @@ class AppActions(
 
     suspend fun setNotificationsBlocked(app: AppInfo, blocked: Boolean): ActionOutcome {
         validate(app.packageName)?.let { return it }
-        val exec = executor
+        val exec = connectedExecutor()
         if (exec == null) {
-            // The listener still enforces the block by dismissing anything the app posts.
+            // Without a backend the listener enforces the block by dismissing anything the app posts.
             settings.setBlocked(app.packageName, blocked)
             if (blocked) BlockedNotificationListener.clearFor(app.packageName)
-            val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                .putExtra(Settings.EXTRA_APP_PACKAGE, app.packageName)
             return ActionOutcome(
                 success = true,
-                message = if (blocked) "Turn off \"All notifications\" to finish blocking ${app.label}"
-                else "Turn notifications back on for ${app.label}",
-                fallbackIntent = intent,
+                message = when {
+                    !blocked -> "Notifications allowed for ${app.label}"
+                    BlockedNotificationListener.isEnabled(context) -> "Notifications blocked for ${app.label}"
+                    else -> "${app.label} muted. Turn on notification access in Settings so it's enforced."
+                },
             )
         }
         val result = exec.setNotificationsEnabled(app.packageName, app.uid, !blocked)
@@ -185,6 +187,13 @@ class AppActions(
         } else {
             ActionOutcome(false, explainFailure(result.output), result.output)
         }
+    }
+
+    /** The active backend, quietly reconnecting the built-in one first if it was paired before. */
+    private suspend fun connectedExecutor(): PrivilegedExecutor? {
+        executor?.let { return it }
+        if (!backend.adb.isPaired || backend.adb.connect() !is BackendStatus.Ready) return null
+        return withTimeoutOrNull(2_000) { backend.active.first { it.isPrivileged }.executor }
     }
 
     private fun needsBackend() = ActionOutcome(false, "This needs Shizuku or root. Open setup from the status chip.")

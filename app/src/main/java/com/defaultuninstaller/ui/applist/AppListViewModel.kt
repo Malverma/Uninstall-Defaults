@@ -19,12 +19,11 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-enum class AppFilter(val label: String) { ALL("All"), SYSTEM("System"), USER("User"), DISABLED("Disabled"), BLOCKED("Notifications blocked") }
-enum class AppSort(val label: String) { NAME("Name"), PACKAGE("Package name"), INSTALLED("Install date"), UPDATED("Last updated") }
+enum class AppFilter(val label: String) { ALL("All"), DISABLED("Disabled") }
 
 data class AppRow(val app: AppInfo, val safety: Safety, val notificationsBlocked: Boolean)
 
-data class Query(val text: String = "", val filter: AppFilter = AppFilter.SYSTEM, val sort: AppSort = AppSort.NAME)
+data class Query(val text: String = "", val filter: AppFilter = AppFilter.ALL)
 
 data class BulkProgress(val done: Int, val total: Int, val current: String)
 
@@ -73,21 +72,11 @@ class AppListViewModel(private val c: AppContainer) : ViewModel() {
             .filter {
                 when (q.filter) {
                     AppFilter.ALL -> true
-                    AppFilter.SYSTEM -> it.app.isSystem
-                    AppFilter.USER -> !it.app.isSystem
                     AppFilter.DISABLED -> !it.app.isEnabled
-                    AppFilter.BLOCKED -> it.notificationsBlocked
                 }
             }
             .filter { needle.isEmpty() || it.app.label.lowercase().contains(needle) || it.app.packageName.contains(needle) }
-            .sortedWith(
-                when (q.sort) {
-                    AppSort.NAME -> compareBy { it.app.label.lowercase() }
-                    AppSort.PACKAGE -> compareBy { it.app.packageName }
-                    AppSort.INSTALLED -> compareByDescending { it.app.firstInstallTime }
-                    AppSort.UPDATED -> compareByDescending { it.app.lastUpdateTime }
-                },
-            )
+            .sortedByDescending { it.app.sizeBytes }
             .toList()
     }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
@@ -95,7 +84,6 @@ class AppListViewModel(private val c: AppContainer) : ViewModel() {
 
     fun setSearch(text: String) = query.update { it.copy(text = text) }
     fun setFilter(filter: AppFilter) = query.update { it.copy(filter = filter) }
-    fun setSort(sort: AppSort) = query.update { it.copy(sort = sort) }
 
     fun refresh() {
         c.backend.refresh()

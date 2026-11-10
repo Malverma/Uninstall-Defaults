@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 class PackageRepository(private val context: Context, private val scope: CoroutineScope) {
     private val pm = context.packageManager
@@ -111,6 +112,7 @@ class PackageRepository(private val context: Context, private val scope: Corouti
             isEnabled = enabled,
             isInstalledForUser = ai.flags and ApplicationInfo.FLAG_INSTALLED != 0,
             apkPath = ai.sourceDir.orEmpty(),
+            sizeBytes = (listOfNotNull(ai.sourceDir) + ai.splitSourceDirs.orEmpty()).sumOf { File(it).length() },
             installer = installer,
             firstInstallTime = info.firstInstallTime,
             lastUpdateTime = info.lastUpdateTime,

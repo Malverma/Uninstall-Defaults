@@ -1,6 +1,7 @@
 package com.defaultuninstaller.ui.applist
 
 import android.content.ActivityNotFoundException
+import android.text.format.Formatter
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -22,7 +23,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
@@ -169,8 +169,6 @@ fun AppListScreen(
                     backendLabel = backend.label,
                     privileged = backend.isPrivileged,
                     onBackendClick = onOpenSetup,
-                    sort = query.sort,
-                    onSort = vm::setSort,
                     onOpenRemoved = onOpenRemoved,
                     onOpenHistory = onOpenHistory,
                     onOpenSettings = onOpenSettings,
@@ -360,14 +358,11 @@ private fun MainTopBar(
     backendLabel: String,
     privileged: Boolean,
     onBackendClick: () -> Unit,
-    sort: AppSort,
-    onSort: (AppSort) -> Unit,
     onOpenRemoved: () -> Unit,
     onOpenHistory: () -> Unit,
     onOpenSettings: () -> Unit,
     onRefresh: () -> Unit,
 ) {
-    var sortMenu by remember { mutableStateOf(false) }
     var overflow by remember { mutableStateOf(false) }
     TopAppBar(
         title = {
@@ -407,18 +402,6 @@ private fun MainTopBar(
             }
             IconButton(onClick = onToggleSearch) {
                 Icon(if (searching) Icons.Default.Close else Icons.Default.Search, contentDescription = if (searching) "Close search" else "Search")
-            }
-            Box {
-                IconButton(onClick = { sortMenu = true }) { Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = "Sort") }
-                DropdownMenu(expanded = sortMenu, onDismissRequest = { sortMenu = false }) {
-                    AppSort.entries.forEach { s ->
-                        DropdownMenuItem(
-                            text = { Text(s.label) },
-                            onClick = { onSort(s); sortMenu = false },
-                            trailingIcon = { if (s == sort) Icon(Icons.Default.CheckCircle, contentDescription = "Selected") },
-                        )
-                    }
-                }
             }
             Box {
                 IconButton(onClick = { overflow = true }) { Icon(Icons.Default.MoreVert, contentDescription = "More") }
@@ -496,6 +479,11 @@ private fun AppRowItem(
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
                 Text(app.label, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(
+                    Formatter.formatShortFileSize(LocalContext.current, app.sizeBytes),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 if (showPackageName) {
                     Text(
                         app.packageName,
